@@ -8,7 +8,8 @@ import (
 	"unicode/utf8"
 )
 
-func init() {
+//Load Env Vars
+func Load() {
 	f, err := os.Open(".env")
 	if err != nil {
 		fmt.Println(".env Not Found")
