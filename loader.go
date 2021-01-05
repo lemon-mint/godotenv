@@ -17,7 +17,7 @@ func Load() {
 	}
 	defer f.Close()
 	envfiledata, err := ioutil.ReadAll(f)
-	if err != nil || utf8.Valid(envfiledata) {
+	if err != nil || !utf8.Valid(envfiledata) {
 		fmt.Println(".env Reading ERROR")
 		return
 	}
