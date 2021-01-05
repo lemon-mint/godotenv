@@ -26,6 +26,8 @@ func Load() {
 	envs := strings.Split(env, "\n")
 	for i := range envs {
 		envline := strings.SplitN(envs[i], "=", 2)
-		os.Setenv(envline[0], envline[1])
+		if len(envline) > 1 {
+			os.Setenv(envline[0], envline[1])
+		}
 	}
 }
