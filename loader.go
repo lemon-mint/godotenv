@@ -12,7 +12,7 @@ import (
 func Load() {
 	f, err := os.Open(".env")
 	if err != nil {
-		fmt.Println(".env Not Found")
+		//fmt.Println(".env Not Found")
 		return
 	}
 	defer f.Close()
