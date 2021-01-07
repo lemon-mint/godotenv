@@ -22,12 +22,22 @@ func Load() {
 		return
 	}
 	env := string(envfiledata)
-	env = strings.ReplaceAll(env, "\r\n", "\n")
-	envs := strings.Split(env, "\n")
+	envs := Parse(env)
+	for key, value := range envs {
+		os.Setenv(key, value)
+	}
+}
+
+//Parse .env file
+func Parse(text string) map[string]string {
+	datas := make(map[string]string)
+	text = strings.ReplaceAll(text, "\r\n", "\n")
+	envs := strings.Split(text, "\n")
 	for i := range envs {
 		envline := strings.SplitN(envs[i], "=", 2)
 		if len(envline) > 1 {
-			os.Setenv(envline[0], envline[1])
+			datas[envline[0]] = envline[1]
 		}
 	}
+	return datas
 }
